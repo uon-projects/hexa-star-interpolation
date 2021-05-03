@@ -3,106 +3,130 @@
 #include <cmath>
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#include <iterator>
 #include "shapes.h"
 #include "storage.h"
 
-void Pentagon::draw()
+void Shape::drawShape()
 {
-    glColor3f(colour[0], colour[1], colour[2]);
+    glColor3f(strokeColour[0], strokeColour[1], strokeColour[2]);
     glBegin(GL_LINE_LOOP);
-    for (auto &vertex : vertices)
+    for(int i=0; i<getTotalPoints(); i++)
     {
+        Point vertex = getPoints()[i];
         glVertex3f(vertex.x, vertex.y, vertex.z);
     }
     glEnd();
 }
 
-void Pentagon::setColour(float r, float g, float b)
+void Shape::setStrokeColour(float r, float g, float b)
 {
-    colour[0] = r;
-    colour[1] = g;
-    colour[2] = b;
+    strokeColour[0] = r;
+    strokeColour[1] = g;
+    strokeColour[2] = b;
+}
+
+void Shape::setStrokeColour(Shape s)
+{
+    strokeColour[0] = s.strokeColour[0];
+    strokeColour[1] = s.strokeColour[1];
+    strokeColour[2] = s.strokeColour[2];
+}
+
+Point *Shape::getPoints()
+{
+    return nullptr;
+}
+
+int Shape::getTotalPoints()
+{
+    return 0;
+}
+
+void Pentagon::draw()
+{
+    drawShape();
+}
+
+Point *Pentagon::getPoints()
+{
+    return vertices;
+}
+
+int Pentagon::getTotalPoints()
+{
+    return 5;
 }
 
 void Star::draw()
 {
-    glColor3f(colour[0], colour[1], colour[2]);
-    glBegin(GL_LINE_LOOP);
-    for (auto &vertex : vertices)
-    {
-        glVertex3f(vertex.x, vertex.y, vertex.z);
-    }
-    glEnd();
+    drawShape();
 }
 
-void Star::setColour(float r, float g, float b)
+Point *Star::getPoints()
 {
-    colour[0] = r;
-    colour[1] = g;
-    colour[2] = b;
+    return vertices;
 }
 
-void Star::setColour(Star s)
+int Star::getTotalPoints()
 {
-    colour[0] = s.colour[0];
-    colour[1] = s.colour[1];
-    colour[2] = s.colour[2];
+    return 10;
 }
 
 void init()
 {
-    Storage::readPentagon(p.vertices);
-    Storage::readStar(s.vertices);
-    Storage::readAnimatedStar(ibt.vertices);
+    Storage::readPentagon(pentagon.vertices);
+    Storage::readStar(star.vertices);
+    Storage::readAnimatedStar(animatedStar.vertices);
 
-    p.setColour(.007, .095, .237);
-    s.setColour(.237, .210, .007);
-    ibt.setColour(.007, .237, .088);
+    pentagon.setStrokeColour(.007, .095, .237);
+    star.setStrokeColour(.237, .210, .007);
+    animatedStar.setStrokeColour(.007, .237, .088);
 }
 
 void write()
 {
     Storage storage;
 
-    storage.writeD("#BEGIN SHAPES_CONTENT\n\n");
-    storage.writeD("#BEGIN PENTAGON_VERTICES\n");
-    for (auto & vertex : p.vertices)
+    storage.write("#BEGIN SHAPES_CONTENT\n\n");
+    storage.write("#BEGIN PENTAGON_VERTICES\n");
+    for (auto & vertex : pentagon.vertices)
     {
-        storage.writeD(
+        storage.write(
                 std::to_string(vertex.x) + " " +
                 std::to_string(vertex.y) + " " +
                 std::to_string(vertex.z) + " " +
                 "\n"
         );
     }
-    storage.writeD("#END PENTAGON_VERTICES\n\n");
+    storage.write("#END PENTAGON_VERTICES\n\n");
 
-    storage.writeD("#BEGIN STAR_VERTICES\n");
-    for (auto & vertex : s.vertices)
+    storage.write("#BEGIN STAR_VERTICES\n");
+    for (auto & vertex : star.vertices)
     {
-        storage.writeD(
+        storage.write(
                 std::to_string(vertex.x) + " " +
                 std::to_string(vertex.y) + " " +
                 std::to_string(vertex.z) + " " +
                 "\n"
         );
     }
-    storage.writeD("#END STAR_VERTICES\n\n");
+    storage.write("#END STAR_VERTICES\n\n");
 
-    storage.writeD("#BEGIN ANIMATED_STAR_VERTICES\n");
-    for (auto & vertex : ibt.vertices)
+    storage.write("#BEGIN ANIMATED_STAR_VERTICES\n");
+    for (auto & vertex : animatedStar.vertices)
     {
-        storage.writeD(
+        storage.write(
                 std::to_string(vertex.x) + " " +
                 std::to_string(vertex.y) + " " +
                 std::to_string(vertex.z) + " " +
                 "\n"
         );
     }
-    storage.writeD("#END ANIMATED_STAR_VERTICES\n\n");
-    storage.writeD("#END SHAPES_CONTENT\n");
+    storage.write("#END ANIMATED_STAR_VERTICES\n\n");
+    storage.write("#END SHAPES_CONTENT\n");
 
-    storage.writeVertices();
+    storage.createFile();
 }
 
 

@@ -10,14 +10,14 @@
 #if defined(_WIN32)
 
 /* GLUT 3.7 now tries to avoid including <windows.h>
-   to avoid name space pollution, but Win32's <GL/gl.h> 
+   to avoid name space pollution, but Win32'star <GL/gl.h>
    needs APIENTRY and WINGDIAPI defined properly. */
 # if 0
 /* This would put tons of macros and crap in our clean name space. */
 #  define  WIN32_LEAN_AND_MEAN
 #  include <windows.h>
 # else
-/* XXX This is from Win32's <windef.h> */
+/* XXX This is from Win32'star <windef.h> */
 #  ifndef APIENTRY
 #   define GLUT_APIENTRY_DEFINED
 #   if (_MSC_VER >= 800) || defined(_STDCALL_SUPPORTED) || defined(__BORLANDC__) || defined(__LCC__)
@@ -26,7 +26,7 @@
 #    define APIENTRY
 #   endif
 #  endif
-/* XXX This is from Win32's <winnt.h> */
+/* XXX This is from Win32'star <winnt.h> */
 #  ifndef CALLBACK
 #   if (defined(_M_MRX000) || defined(_M_IX86) || defined(_M_ALPHA) || defined(_M_PPC)) && !defined(MIDL_PASS) || defined(__LCC__)
 #    define CALLBACK __stdcall
@@ -39,13 +39,13 @@
 #   undef WINGDIAPI
 #   define WINGDIAPI __stdcall
 #  else
-/* XXX This is from Win32's <wingdi.h> and <winnt.h> */
+/* XXX This is from Win32'star <wingdi.h> and <winnt.h> */
 #   ifndef WINGDIAPI
 #    define GLUT_WINGDIAPI_DEFINED
 #    define WINGDIAPI __declspec(dllimport)
 #   endif
 #  endif
-/* XXX This is from Win32's <ctype.h> */
+/* XXX This is from Win32'star <ctype.h> */
 #  ifndef _WCHAR_T_DEFINED
 typedef unsigned short wchar_t;
 #   define _WCHAR_T_DEFINED
@@ -89,15 +89,15 @@ typedef unsigned short wchar_t;
    One workaround to this issue is requiring users to always link with
    the same CRT as GLUT is compiled with.  That requires users supply a
    non-standard option.  GLUT 3.7 has its own built-in workaround where
-   the executable's "exit" function pointer is covertly passed to GLUT.
-   GLUT then calls the executable's exit function pointer to ensure that
+   the executable'star "exit" function pointer is covertly passed to GLUT.
+   GLUT then calls the executable'star exit function pointer to ensure that
    any "atexit" calls registered by the application are called if GLUT
    needs to exit.
 
    Note that the __glut*WithExit routines should NEVER be called directly.
    To avoid the atexit workaround, #define GLUT_DISABLE_ATEXIT_HACK. */
 
-/* XXX This is from Win32's <process.h> */
+/* XXX This is from Win32'star <process.h> */
 # if !defined(_MSC_VER) && !defined(__cdecl)
 /* Define __cdecl for non-Microsoft compilers. */
 #  define __cdecl
@@ -189,35 +189,35 @@ extern void exit(int);
  GLUT_XLIB_IMPLEMENTATION is updated to reflect both GLUT
  API revisions and implementation revisions (ie, bug fixes).
 
- GLUT_XLIB_IMPLEMENTATION=1  mjk's first public release of
+ GLUT_XLIB_IMPLEMENTATION=1  mjk'star first public release of
  GLUT Xlib-based implementation.  11/29/94
 
- GLUT_XLIB_IMPLEMENTATION=2  mjk's second public release of
+ GLUT_XLIB_IMPLEMENTATION=2  mjk'star second public release of
  GLUT Xlib-based implementation providing GLUT version 2 
  interfaces.
 
- GLUT_XLIB_IMPLEMENTATION=3  mjk's GLUT 2.2 images. 4/17/95
+ GLUT_XLIB_IMPLEMENTATION=3  mjk'star GLUT 2.2 images. 4/17/95
 
- GLUT_XLIB_IMPLEMENTATION=4  mjk's GLUT 2.3 images. 6/?/95
+ GLUT_XLIB_IMPLEMENTATION=4  mjk'star GLUT 2.3 images. 6/?/95
 
- GLUT_XLIB_IMPLEMENTATION=5  mjk's GLUT 3.0 images. 10/?/95
+ GLUT_XLIB_IMPLEMENTATION=5  mjk'star GLUT 3.0 images. 10/?/95
 
- GLUT_XLIB_IMPLEMENTATION=7  mjk's GLUT 3.1+ with glutWarpPoitner.  7/24/96
+ GLUT_XLIB_IMPLEMENTATION=7  mjk'star GLUT 3.1+ with glutWarpPoitner.  7/24/96
 
- GLUT_XLIB_IMPLEMENTATION=8  mjk's GLUT 3.1+ with glutWarpPoitner
+ GLUT_XLIB_IMPLEMENTATION=8  mjk'star GLUT 3.1+ with glutWarpPoitner
  and video resize.  1/3/97
 
- GLUT_XLIB_IMPLEMENTATION=9 mjk's GLUT 3.4 release with early GLUT 4 routines.
+ GLUT_XLIB_IMPLEMENTATION=9 mjk'star GLUT 3.4 release with early GLUT 4 routines.
 
- GLUT_XLIB_IMPLEMENTATION=11 Mesa 2.5's GLUT 3.6 release.
+ GLUT_XLIB_IMPLEMENTATION=11 Mesa 2.5'star GLUT 3.6 release.
 
- GLUT_XLIB_IMPLEMENTATION=12 mjk's GLUT 3.6 release with early GLUT 4 routines + signal handling.
+ GLUT_XLIB_IMPLEMENTATION=12 mjk'star GLUT 3.6 release with early GLUT 4 routines + signal handling.
 
- GLUT_XLIB_IMPLEMENTATION=13 mjk's GLUT 3.7 beta with GameGLUT support.
+ GLUT_XLIB_IMPLEMENTATION=13 mjk'star GLUT 3.7 beta with GameGLUT support.
 
- GLUT_XLIB_IMPLEMENTATION=14 mjk's GLUT 3.7 beta with f90gl friend interface.
+ GLUT_XLIB_IMPLEMENTATION=14 mjk'star GLUT 3.7 beta with f90gl friend interface.
 
- GLUT_XLIB_IMPLEMENTATION=15 mjk's GLUT 3.7 beta sync'ed with Mesa <GL/glut.h>
+ GLUT_XLIB_IMPLEMENTATION=15 mjk'star GLUT 3.7 beta sync'ed with Mesa <GL/glut.h>
 **/
 #ifndef GLUT_XLIB_IMPLEMENTATION  /* Allow this to be overriden. */
 #define GLUT_XLIB_IMPLEMENTATION    15
@@ -599,7 +599,7 @@ glutJoystickFunc(void (GLUTCALLBACK *func)(unsigned int buttonMask, int x, int y
 #endif
 #endif
 
-/* GLUT colour index sub-API. */
+/* GLUT strokeColour index sub-API. */
 GLUTAPI void APIENTRY glutSetColor(int, GLfloat red, GLfloat green, GLfloat blue);
 GLUTAPI GLfloat APIENTRY glutGetColor(int ndx, int component);
 GLUTAPI void APIENTRY glutCopyColormap(int win);

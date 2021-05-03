@@ -21,10 +21,10 @@ void reshape(int, int);
 
 float timelapse = 0.0;
 
-Pentagon p;
-Star s;
-Point m[5];
-Star ibt;
+Pentagon pentagon;
+Star star;
+Star animatedStar;
+
 float timeSpeed = .0001;
 int screenSize[] = {
         500,
@@ -45,8 +45,15 @@ float endColour[3] = {
 float currentColour[3];
 const float colourAnimationSpeed = .00001;
 bool colourAnimationReverse = false;
+float widthAnimation = 6;
 
-
+/**
+ * Main function
+ *
+ * @param argc
+ * @param argv
+ * @return
+ */
 int main(int argc, char *argv[])
 {
 
@@ -69,29 +76,38 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-float widthAnimation = 6;
+/**
+ * Display the shapes and the background
+ */
 void display()
 {
     glClearColor(currentColour[0], currentColour[1], currentColour[2], 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glLineWidth(6.0);
-    p.draw();
+    pentagon.draw();
     glLineWidth(1.0);
-    s.draw();
+    star.draw();
 
     Star tmp;
-    tmp.setColour(ibt);
+    tmp.setStrokeColour(animatedStar);
     glLineWidth(widthAnimation);
     for (int i = 0; i < 10; i++)
     {
-        tmp.vertices[i] = ibt.vertices[i] * (1.0f - timelapse) + s.vertices[i] * timelapse;
+        tmp.vertices[i] = animatedStar.vertices[i] * (1.0f - timelapse) + star.vertices[i] * timelapse;
     }
     tmp.draw();
 
     glutSwapBuffers();
 }
 
+/**
+ * on each frame do some stuff
+ *
+ * - increase the timelapse
+ * - change the width of the animated star
+ * - change the background strokeColour
+ */
 void idle()
 {
     timelapse += finished ? (timeSpeed * -1) : timeSpeed;
@@ -124,6 +140,12 @@ void idle()
     glutPostRedisplay();
 }
 
+/**
+ * set the size of the screen at launch
+ *
+ * @param w represents the width of the screen
+ * @param h represents the height of the screen
+ */
 void reshape(int w, int h)
 {
     glutReshapeWindow(screenSize[0], screenSize[1]);

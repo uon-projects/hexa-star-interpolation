@@ -5,7 +5,6 @@
 #include "stdafx.h"
 #include <iostream>
 #include <fstream>
-#include <cmath>
 #include <sstream>
 #include "storage.h"
 
@@ -15,15 +14,12 @@ Storage::Storage() = default;
 
 Storage::~Storage() = default;
 
-void Storage::writeD(const std::string& data)
+void Storage::write(const std::string& data)
 {
     verticesBuilder += data;
 }
 
-/**
- * @func writeVertices
- */
-void Storage::writeVertices()
+void Storage::createFile()
 {
     // open a file for writing pentagon vertices
     ofstream writeVertices("vertices.txt");
