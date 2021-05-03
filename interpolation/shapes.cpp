@@ -15,7 +15,7 @@ void Shape::drawShape()
 {
     glColor3f(strokeColour[0], strokeColour[1], strokeColour[2]);
     glBegin(GL_LINE_LOOP);
-    for(int i=0; i<getTotalPoints(); i++)
+    for (int i = 0; i < getTotalPoints(); i++)
     {
         Point vertex = getPoints()[i];
         glVertex3f(vertex.x, vertex.y, vertex.z);
@@ -30,7 +30,7 @@ void Shape::setStrokeColour(float r, float g, float b)
     strokeColour[2] = b;
 }
 
-void Shape::setStrokeColour(Shape s)
+void Shape::setStrokeColour(const Shape &s)
 {
     strokeColour[0] = s.strokeColour[0];
     strokeColour[1] = s.strokeColour[1];
@@ -94,7 +94,7 @@ void write()
 
     storage.write("#BEGIN SHAPES_CONTENT\n\n");
     storage.write("#BEGIN PENTAGON_VERTICES\n");
-    for (auto & vertex : pentagon.vertices)
+    for (auto &vertex : pentagon.vertices)
     {
         storage.write(
                 std::to_string(vertex.x) + " " +
@@ -106,7 +106,7 @@ void write()
     storage.write("#END PENTAGON_VERTICES\n\n");
 
     storage.write("#BEGIN STAR_VERTICES\n");
-    for (auto & vertex : star.vertices)
+    for (auto &vertex : star.vertices)
     {
         storage.write(
                 std::to_string(vertex.x) + " " +
@@ -118,7 +118,7 @@ void write()
     storage.write("#END STAR_VERTICES\n\n");
 
     storage.write("#BEGIN ANIMATED_STAR_VERTICES\n");
-    for (auto & vertex : animatedStar.vertices)
+    for (auto &vertex : animatedStar.vertices)
     {
         storage.write(
                 std::to_string(vertex.x) + " " +

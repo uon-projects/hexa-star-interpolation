@@ -23,7 +23,7 @@ public:
      * @param data the string that should be written
      * inside the file
      */
-    void write(const std::string& data);
+    void write(const std::string &data);
 
     /**
      * Creates the file based on the current string
@@ -62,7 +62,7 @@ private:
      * @param points the array points
      * @param tag the tag that represents the object
      */
-    static void readShape(Point points[], const std::string& tag);
+    static void readShape(Point points[], const std::string &tag);
 
 private:
     std::string verticesBuilder;

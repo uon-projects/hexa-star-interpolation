@@ -32,7 +32,7 @@ public:
      * @param s the star that we want to copy
      * its strokeColour
      */
-    void setStrokeColour(Shape s);
+    void setStrokeColour(const Shape &s);
 
     /**
      * Virtual method to get the points based
@@ -74,7 +74,7 @@ public:
      */
     void draw();
 
-    Point * getPoints() override;
+    Point *getPoints() override;
 
     int getTotalPoints() override;
 
@@ -92,7 +92,7 @@ public:
      */
     void draw();
 
-    Point * getPoints() override;
+    Point *getPoints() override;
 
     int getTotalPoints() override;
 

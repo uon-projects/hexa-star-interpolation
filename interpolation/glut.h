@@ -483,7 +483,8 @@ GLUTAPI void APIENTRY glutInit(int *argcp, char **argv);
 #if defined(_WIN32) && !defined(GLUT_DISABLE_ATEXIT_HACK)
 GLUTAPI void APIENTRY __glutInitWithExit(int *argcp, char **argv, void (__cdecl *exitfunc)(int));
 #ifndef GLUT_BUILDING_LIB
-static void APIENTRY glutInit_ATEXIT_HACK(int *argcp, char **argv) { __glutInitWithExit(argcp, argv, exit); }
+static void APIENTRY glutInit_ATEXIT_HACK(int *argcp, char **argv)
+{ __glutInitWithExit(argcp, argv, exit); }
 #define glutInit glutInit_ATEXIT_HACK
 #endif
 #endif
@@ -500,7 +501,8 @@ GLUTAPI int APIENTRY glutCreateWindow(const char *title);
 #if defined(_WIN32) && !defined(GLUT_DISABLE_ATEXIT_HACK)
 GLUTAPI int APIENTRY __glutCreateWindowWithExit(const char *title, void (__cdecl *exitfunc)(int));
 #ifndef GLUT_BUILDING_LIB
-static int APIENTRY glutCreateWindow_ATEXIT_HACK(const char *title) { return __glutCreateWindowWithExit(title, exit); }
+static int APIENTRY glutCreateWindow_ATEXIT_HACK(const char *title)
+{ return __glutCreateWindowWithExit(title, exit); }
 #define glutCreateWindow glutCreateWindow_ATEXIT_HACK
 #endif
 #endif
@@ -546,7 +548,8 @@ GLUTAPI int APIENTRY glutCreateMenu(void (GLUTCALLBACK *func)(int));
 #if defined(_WIN32) && !defined(GLUT_DISABLE_ATEXIT_HACK)
 GLUTAPI int APIENTRY __glutCreateMenuWithExit(void (GLUTCALLBACK *func)(int), void (__cdecl *exitfunc)(int));
 #ifndef GLUT_BUILDING_LIB
-static int APIENTRY glutCreateMenu_ATEXIT_HACK(void (GLUTCALLBACK *func)(int)) {
+static int APIENTRY glutCreateMenu_ATEXIT_HACK(void (GLUTCALLBACK *func)(int))
+{
     return __glutCreateMenuWithExit(func, exit);
 }
 #define glutCreateMenu glutCreateMenu_ATEXIT_HACK

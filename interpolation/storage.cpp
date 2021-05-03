@@ -14,7 +14,7 @@ Storage::Storage() = default;
 
 Storage::~Storage() = default;
 
-void Storage::write(const std::string& data)
+void Storage::write(const std::string &data)
 {
     verticesBuilder += data;
 }
@@ -45,7 +45,7 @@ void Storage::readAnimatedStar(Point *points)
     readShape(points, "ANIMATED_STAR_VERTICES");
 }
 
-void Storage::readShape(Point *points, const std::string& tag)
+void Storage::readShape(Point *points, const std::string &tag)
 {
     ifstream readVertices("vertices.txt");
     std::string line;
