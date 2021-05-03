@@ -1,5 +1,5 @@
 //
-// Created by teo on 03/05/2021.
+// Created by Teodor on 12/02/2021.
 //
 
 #ifndef INTERPOLATION_POINT_H

@@ -1,3 +1,7 @@
+//
+// Created by Teodor on 12/02/2021.
+//
+
 #include "stdafx.h"
 #include <Windows.h>
 #include <cmath>
