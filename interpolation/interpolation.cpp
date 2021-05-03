@@ -23,6 +23,8 @@ void mouseMotion(int x, int y);
 
 void mouseMovement(int x, int y);
 
+void keyboardListener(unsigned char key, int mouseX, int mouseY);
+
 void reshape(int, int);
 
 float timelapse = 0.0;
@@ -85,6 +87,7 @@ int main(int argc, char *argv[])
     glutMouseFunc(mouseClick);
     glutMotionFunc(mouseMotion);
     glutPassiveMotionFunc(mouseMovement);
+    glutKeyboardFunc(keyboardListener);
     glutReshapeFunc(reshape);
 
     init();
@@ -272,6 +275,24 @@ void mouseMovement(int x, int y)
 {
     mouseX = x;
     mouseY = y;
+}
+
+void keyboardListener(unsigned char key, int mouseX, int mouseY)
+{
+    switch (key)
+    {
+        case 'r':
+            pentagonAngle = 0;
+            break;
+        case '+':
+            pentagonScale += .05;
+            break;
+        case '-':
+            pentagonScale -= .05;
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma clang diagnostic pop
