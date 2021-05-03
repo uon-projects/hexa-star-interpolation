@@ -1,5 +1,4 @@
 // interpolation.cpp : Defines the entry point for the console application.
-//
 
 #include "stdafx.h"
 #include <Windows.h>
@@ -7,91 +6,127 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 #include "glut.h"
-#include "primitives.h"
+#include "shapes.h"
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "UnusedLocalVariable"
 
 using namespace std;
-void display();
-void idle();
-void reshape(int, int);
-void lineMorphSnapshot(Point p0, Point p1, Point q0, Point q1, float time);
 
-float time = 0.0;
+void display();
+
+void idle();
+
+void reshape(int, int);
+
+float timelapse = 0.0;
 
 Pentagon p;
 Star s;
 Point m[5];
 Star ibt;
+float timeSpeed = .0001;
+int screenSize[] = {
+        500,
+        500
+};
+bool finished = false;
 
-int main(int argc, char* argv[])
+float beginColour[3] = {
+        .015,
+        .015,
+        .015
+};
+float endColour[3] = {
+        .15,
+        .15,
+        .15
+};
+float currentColour[3];
+const float colourAnimationSpeed = .00001;
+bool colourAnimationReverse = false;
+
+
+int main(int argc, char *argv[])
 {
-	glutInit(&argc, argv);
-	glutInitWindowPosition(10, 10);
-	glutInitWindowSize(800, 800);
-	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE| GLUT_DEPTH);
-	glutCreateWindow("A simple glut window");	
-	glutDisplayFunc(display);
-	glutIdleFunc(idle);
-	glutReshapeFunc(reshape);
 
-	init();
+    memcpy(beginColour, currentColour, sizeof(beginColour));
 
-	glutMainLoop();
+    glutInit(&argc, argv);
+    glutInitWindowPosition(300, 100);
+    glutInitWindowSize(screenSize[0], screenSize[1]);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
+    glutCreateWindow("Graphics 2 | UoN 20/21");
+    glutDisplayFunc(display);
+    glutIdleFunc(idle);
+    glutReshapeFunc(reshape);
 
-	return 0;
+    init();
+    write();
+
+    glutMainLoop();
+
+    return 0;
 }
 
-void display() {
-	glClearColor(0.0, 0.0, 0.0, 1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+float widthAnimation = 6;
+void display()
+{
+    glClearColor(currentColour[0], currentColour[1], currentColour[2], 1.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glLineWidth(4.0);
+    glLineWidth(6.0);
+    p.draw();
+    glLineWidth(1.0);
+    s.draw();
 
-	p.draw();
-	s.draw();
+    Star tmp;
+    tmp.setColour(ibt);
+    glLineWidth(widthAnimation);
+    for (int i = 0; i < 10; i++)
+    {
+        tmp.vertices[i] = ibt.vertices[i] * (1.0f - timelapse) + s.vertices[i] * timelapse;
+    }
+    tmp.draw();
 
-	Star tmp;
-
-	if (time > 1.0) time = 1.0;
-
-	for (int i = 0; i < 10; i++) {
-		/*tmp.vertices[i].x = ibt.vertices[i].x * (1.0 - time) + s.vertices[i].x * time; 
-		tmp.vertices[i].y = ibt.vertices[i].y * (1.0 - time) + s.vertices[i].y * time; 
-		tmp.vertices[i].z = ibt.vertices[i].z * (1.0 - time) + s.vertices[i].z * time; */
-		tmp.vertices[i] = ibt.vertices[i] * (1.0 - time) + s.vertices[i] * time;
-	}
-	tmp.draw();
-
-	glutSwapBuffers();
+    glutSwapBuffers();
 }
 
-void idle() {
-	time += 0.001;  // => time = time + 0.01;
-	glutPostRedisplay();
+void idle()
+{
+    timelapse += finished ? (timeSpeed * -1) : timeSpeed;
+
+    if (timelapse > 1.0)
+    {
+        finished = true;
+    } else if (timelapse < 0)
+    {
+        finished = false;
+    }
+    if(finished)
+    {
+        widthAnimation += timelapse / 1000;
+    } else {
+        widthAnimation -= timelapse / 1000;
+    }
+
+    currentColour[0] += colourAnimationReverse ? -colourAnimationSpeed : colourAnimationSpeed;
+    currentColour[1] += colourAnimationReverse ? -colourAnimationSpeed : colourAnimationSpeed;
+    currentColour[2] += colourAnimationReverse ? -colourAnimationSpeed : colourAnimationSpeed;
+    if (currentColour[0] >= endColour[0])
+    {
+        colourAnimationReverse = true;
+    } else if (currentColour[0] <= beginColour[0])
+    {
+        colourAnimationReverse = false;
+    }
+
+    glutPostRedisplay();
 }
 
-void lineMorphSnapshot(Point p0, Point p1, Point q0, Point q1, float time) {
-
-	Point a, b;
-
-	a.x = (1.0 - time) * p0.x + time * q0.x;
-	a.y = (1.0 - time) * p0.y + time * q0.y;
-	a.z = (1.0 - time) * p0.z + time * q0.z;
-
-	b.x = (1.0 - time) * p1.x + time * q1.x;
-	b.y = (1.0 - time) * p1.y + time * q1.y;
-	b.z = (1.0 - time) * p1.z + time * q1.z;
-
-	glPushMatrix();
-	glScalef(0.5, 0.5, 0.5);
-	glBegin(GL_LINES);
-		glVertex3f(a.x, a.y, a.z);
-		glVertex3f(b.x, b.y, b.z);
-	glEnd();
-	glPopMatrix();
+void reshape(int w, int h)
+{
+    glutReshapeWindow(screenSize[0], screenSize[1]);
 }
 
-void reshape(int w, int h) {
-	glutReshapeWindow(800, 800);
-}
-
-
+#pragma clang diagnostic pop

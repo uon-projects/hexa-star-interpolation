@@ -1,7 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/interpolation.dir/interpolation.obj"
-  "CMakeFiles/interpolation.dir/primitives.obj"
+  "CMakeFiles/interpolation.dir/shapes.obj"
   "CMakeFiles/interpolation.dir/stdafx.obj"
+  "CMakeFiles/interpolation.dir/storage.obj"
   "interpolation.exe"
   "interpolation.exe.manifest"
   "interpolation.pdb"

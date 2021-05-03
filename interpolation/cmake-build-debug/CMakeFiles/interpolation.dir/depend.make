@@ -8,6 +8,9 @@ CMakeFiles/interpolation.dir/interpolation.obj: ../stdafx.h
 CMakeFiles/interpolation.dir/interpolation.obj: ../targetver.h
 
 CMakeFiles/interpolation.dir/primitives.obj: ../primitives.cpp
+CMakeFiles/interpolation.dir/primitives.obj: ../primitives.h
+CMakeFiles/interpolation.dir/primitives.obj: ../stdafx.h
+CMakeFiles/interpolation.dir/primitives.obj: ../targetver.h
 
 CMakeFiles/interpolation.dir/stdafx.obj: ../stdafx.cpp
 CMakeFiles/interpolation.dir/stdafx.obj: ../stdafx.h

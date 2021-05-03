@@ -88,16 +88,25 @@
 		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/interpolation.cpp">
 			<Option target="interpolation"/>
 		</Unit>
-		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/primitives.cpp">
+		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/point.h">
 			<Option target="interpolation"/>
 		</Unit>
-		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/primitives.h">
+		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/shapes.cpp">
+			<Option target="interpolation"/>
+		</Unit>
+		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/shapes.h">
 			<Option target="interpolation"/>
 		</Unit>
 		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/stdafx.cpp">
 			<Option target="interpolation"/>
 		</Unit>
 		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/stdafx.h">
+			<Option target="interpolation"/>
+		</Unit>
+		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/storage.cpp">
+			<Option target="interpolation"/>
+		</Unit>
+		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/storage.h">
 			<Option target="interpolation"/>
 		</Unit>
 		<Unit filename="E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/targetver.h">

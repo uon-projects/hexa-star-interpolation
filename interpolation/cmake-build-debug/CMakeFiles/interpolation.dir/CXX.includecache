@@ -6,5 +6,59 @@
 
 #IncludeRegexTransform: 
 
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/glut.h
+windows.h
+-
+GL/gl.h
+-
+GL/glu.h
+-
+
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/interpolation.cpp
+stdafx.h
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/stdafx.h
+Windows.h
+-
+iostream
+-
+gl/GL.h
+-
+gl/GLU.h
+-
+glut.h
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/glut.h
+primitives.h
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/primitives.h
+
 E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/primitives.cpp
+stdafx.h
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/stdafx.h
+Windows.h
+-
+math.h
+-
+gl/GL.h
+-
+gl/GLU.h
+-
+primitives.h
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/primitives.h
+
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/primitives.h
+
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/stdafx.cpp
+stdafx.h
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/stdafx.h
+
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/stdafx.h
+targetver.h
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/targetver.h
+stdio.h
+-
+tchar.h
+-
+
+E:/UoN/Y2/Semester 2/CSY2033/interpolation/interpolation/targetver.h
+SDKDDKVer.h
+-
 

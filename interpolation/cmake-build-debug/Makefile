@@ -158,19 +158,19 @@ interpolation.s:
 .PHONY : interpolation.s
 
 # target to build an object file
-primitives.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/primitives.obj
-.PHONY : primitives.obj
+shapes.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/shapes.obj
+.PHONY : shapes.obj
 
 # target to preprocess a source file
-primitives.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/primitives.i
-.PHONY : primitives.i
+shapes.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/shapes.i
+.PHONY : shapes.i
 
 # target to generate assembly for a file
-primitives.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/primitives.s
-.PHONY : primitives.s
+shapes.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/shapes.s
+.PHONY : shapes.s
 
 # target to build an object file
 stdafx.obj:
@@ -187,6 +187,21 @@ stdafx.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/stdafx.s
 .PHONY : stdafx.s
 
+# target to build an object file
+storage.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/storage.obj
+.PHONY : storage.obj
+
+# target to preprocess a source file
+storage.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/storage.i
+.PHONY : storage.i
+
+# target to generate assembly for a file
+storage.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\interpolation.dir\build.make CMakeFiles/interpolation.dir/storage.s
+.PHONY : storage.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -199,12 +214,15 @@ help:
 	@echo ... interpolation.obj
 	@echo ... interpolation.i
 	@echo ... interpolation.s
-	@echo ... primitives.obj
-	@echo ... primitives.i
-	@echo ... primitives.s
+	@echo ... shapes.obj
+	@echo ... shapes.i
+	@echo ... shapes.s
 	@echo ... stdafx.obj
 	@echo ... stdafx.i
 	@echo ... stdafx.s
+	@echo ... storage.obj
+	@echo ... storage.i
+	@echo ... storage.s
 .PHONY : help
 
 
