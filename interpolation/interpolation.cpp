@@ -277,6 +277,16 @@ void mouseMovement(int x, int y)
     mouseY = y;
 }
 
+/**
+ * extensions to gl library to listen to inputs from
+ * keyboard
+ *
+ * @param key the pressed key
+ * @param mouseX the value where the mouse is located relative
+ * to the width
+ * @param mouseY the value where the mouse is located relative
+ * to the height
+ */
 void keyboardListener(unsigned char key, int mouseX, int mouseY)
 {
     switch (key)
